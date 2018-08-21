@@ -10,18 +10,19 @@ function moveAll(direction) {
     let grid = document.getElementById('grid');
     let tile = group.children[0];
     let number = group.children[1];
+
     let x = tile.getAttribute('x');
     let y = tile.getAttribute('y');
     let rect = createRect(x, y);
-    // let g = x -  / 125
     document.getElementById('myCanvas').appendChild(rect);
-    // let group = createGroup()
+    group.appendChild(rect);
+
     let intr;
+    let newGroup;
     let gridWidth = grid.getAttribute('width');
     let gridHeight = grid.getAttribute('height');
     let tileWidth = tile.getAttribute('width');
     let tileHeight = tile.getAttribute('height');
-    console.log(tile);
 
     switch (direction) {
       case 'left':
@@ -33,6 +34,12 @@ function moveAll(direction) {
             tile.setAttribute('x', x);
             number.setAttribute('x', x + 33);
             clearInterval(intr);
+            for (let idx = group.getAttribute('id'); idx > 0; idx-=4) {
+              if (idx < 5) {
+                resetGroups(group, idx, tile, number);
+                break;
+              }
+            }
           }
         }, 1);
         break;
@@ -45,6 +52,12 @@ function moveAll(direction) {
             tile.setAttribute('y', y);
             number.setAttribute('y', y + 85);
             clearInterval(intr);
+            for (let idx = group.getAttribute('id'); idx > 0; idx--) {
+              if (idx % 4 === 1) {
+                resetGroups(group, idx, tile, number);
+                break;
+              }
+            }
           }
         }, 1);
         break;
@@ -53,11 +66,15 @@ function moveAll(direction) {
           tile.setAttribute('x', parseInt(tile.getAttribute('x')) + 10);
           number.setAttribute('x', parseInt(number.getAttribute('x')) + 10);
           if (parseInt(tile.getAttribute('x')) + parseInt(tileWidth) + 22 > parseInt(grid.getAttribute('x')) + parseInt(gridWidth)) {
-            console.log('constraint');
             let x = parseInt(grid.getAttribute('x')) + parseInt(gridWidth) - 12;
             tile.setAttribute('x', x - tileWidth);
             number.setAttribute('x', x - 45);
             clearInterval(intr);
+            for (let idx = group.getAttribute('id'); idx < 16; idx+=4) {
+              if (idx > 12) {
+                resetGroups(group, idx, tile, number);
+              }
+            }
           }
         }, 1);
         break;
@@ -70,6 +87,11 @@ function moveAll(direction) {
             tile.setAttribute('y', y - tileHeight);
             number.setAttribute('y', y - 55);
             clearInterval(intr);
+            for (let idx = group.getAttribute('id'); idx < 16; idx++) {
+              if (idx % 4 === 0) {
+                resetGroups(group, idx, tile, number);
+              }
+            }
           }
         }, 1);
         break;
@@ -77,4 +99,13 @@ function moveAll(direction) {
       break;
     }
   }
+}
+
+function resetGroups(group, idx, tile, number) {
+  let newGroup = document.getElementById(`${idx}`);
+  group.removeChild(tile);
+  group.removeChild(number);
+  newGroup.removeChild(newGroup.children[0]);
+  newGroup.appendChild(tile);
+  newGroup.appendChild(number);
 }
