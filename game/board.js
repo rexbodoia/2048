@@ -12,22 +12,10 @@ const generateNums = () => {
       let group = document.getElementById(`${idx}`);
 
       if (group.children.length === 1) {
-        let text = document.createElementNS(svgns, 'text');
         let square = group.children[0];
-
-        let x = square.getAttribute('x');
-        let y = square.getAttribute('y');
-
-        text.setAttribute('class', 'text');
-        text.setAttribute('x', parseInt(x) + 33);
-        text.setAttribute('y', parseInt(y) + 85);
-        text.setAttribute('fill', '#C4DFE6');
-
         let value = (Math.floor(Math.random() * 2) + 1) * 2;
-        let textNode = document.createTextNode(value);
 
-        text.appendChild(textNode);
-        group.appendChild(text);
+        group.appendChild(createNumber(square, value));
         count += 1;
       }
     }
@@ -45,6 +33,24 @@ function createRect(x, y) {
   rect.setAttribute('class', 'tile');
 
   return rect;
+}
+
+function createNumber(square, value) {
+  let text = document.createElementNS(svgns, 'text');
+
+  let x = square.getAttribute('x');
+  let y = square.getAttribute('y');
+
+  text.setAttribute('class', 'text');
+  text.setAttribute('x', parseInt(x) + 33);
+  text.setAttribute('y', parseInt(y) + 85);
+  text.setAttribute('fill', '#C4DFE6');
+
+  let textNode = document.createTextNode(value);
+
+  text.appendChild(textNode);
+
+  return text;
 }
 
 function createGroup(idx, rect) {
