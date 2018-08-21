@@ -40,6 +40,8 @@ function createRect(x, y) {
   rect.setAttribute('y', y);
   rect.setAttribute('rx', 20);
   rect.setAttribute('ry', 20);
+  rect.setAttribute('height', 113);
+  rect.setAttribute('width', 113);
   rect.setAttribute('class', 'tile');
 
   return rect;
