@@ -85,7 +85,7 @@ function moveAll(direction) {
           if (parseInt(tile.getAttribute('y')) + parseInt(tileHeight) + 22 > parseInt(grid.getAttribute('y')) + parseInt(gridHeight)) {
             let y = parseInt(grid.getAttribute('y')) + parseInt(gridHeight) - 12;
             tile.setAttribute('y', y - tileHeight);
-            number.setAttribute('y', y - 55);
+            number.setAttribute('y', y - 28);
             clearInterval(intr);
             for (let idx = group.getAttribute('id'); idx < 16; idx++) {
               if (idx % 4 === 0) {
