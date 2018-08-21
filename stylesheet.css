@@ -1,0 +1,25 @@
+#title {
+  font-size: 100px;
+  font-weight: 600;
+  font-family: sans-serif;
+  text-shadow: 2px 2px #07575B;
+}
+
+.tile {
+  /* stroke-width: 12; */
+  fill: #66A5AD;
+  /* stroke: #07575B; */
+  height: 113px;
+  width: 113px;
+}
+
+.group {
+  height: 125px;
+  width: 125px;
+}
+
+.text {
+  font-size: 80px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
