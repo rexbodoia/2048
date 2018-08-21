@@ -73,6 +73,7 @@ function moveAll(direction) {
             for (let idx = group.getAttribute('id'); idx < 16; idx+=4) {
               if (idx > 12) {
                 resetGroups(group, idx, tile, number);
+                break;
               }
             }
           }
@@ -90,6 +91,7 @@ function moveAll(direction) {
             for (let idx = group.getAttribute('id'); idx < 16; idx++) {
               if (idx % 4 === 0) {
                 resetGroups(group, idx, tile, number);
+                break;
               }
             }
           }
