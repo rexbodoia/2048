@@ -34,8 +34,7 @@ function moveEach(group, direction) {
       intr = setInterval(() => {
         tile.setAttribute('x', parseInt(tile.getAttribute('x')) - 1);
         number.setAttribute('x', parseInt(number.getAttribute('x')) - 1);
-        if (withinBoundaries(tile, grid)) {
-          console.log('true');
+        if (withinBoundaries(tile, grid, 'left')) {
           // let x = parseInt(grid.getAttribute('x')) + 12;
           // tile.setAttribute('x', x);
           // number.setAttribute('x', x + 33);
@@ -53,7 +52,7 @@ function moveEach(group, direction) {
       intr = setInterval(() => {
         tile.setAttribute('y', parseInt(tile.getAttribute('y')) - 1);
         number.setAttribute('y', parseInt(number.getAttribute('y')) - 1);
-        if (withinBoundaries(tile, grid)) {
+        if (withinBoundaries(tile, grid, 'up')) {
           // let y = parseInt(grid.getAttribute('y')) + 12;
           // tile.setAttribute('y', y);
           // number.setAttribute('y', y + 85);
@@ -71,7 +70,7 @@ function moveEach(group, direction) {
       intr = setInterval(() => {
         tile.setAttribute('x', parseInt(tile.getAttribute('x')) + 1);
         number.setAttribute('x', parseInt(number.getAttribute('x')) + 1);
-        if (withinBoundaries(tile, grid)) {
+        if (withinBoundaries(tile, grid, 'right')) {
           // let x = parseInt(grid.getAttribute('x')) + parseInt(gridWidth) - 12;
           // tile.setAttribute('x', x - tileWidth);
           // number.setAttribute('x', x - 80);
@@ -89,7 +88,7 @@ function moveEach(group, direction) {
       intr = setInterval(() => {
         tile.setAttribute('y', parseInt(tile.getAttribute('y')) + 1);
         number.setAttribute('y', parseInt(number.getAttribute('y')) + 1);
-        if (withinBoundaries(tile, grid)) {
+        if (withinBoundaries(tile, grid, 'down')) {
           // let y = parseInt(grid.getAttribute('y')) + parseInt(gridHeight) - 12;
           // tile.setAttribute('y', y - tileHeight);
           // number.setAttribute('y', y - 28);
@@ -126,16 +125,22 @@ function boundaries(tile) {
   return { left, right, top, bottom };
 }
 
-function tileBoundary(first, second) {
+function tileBoundary(first, second, dir) {
   first = boundaries(first);
   second = boundaries(second);
 
-  let left = first.right >= second.left && first.top === second.top;
-  let right = first.left <= second.right && first.top === second.top;
-  let top = first.top >= second.bottom && first.left === second.left;
-  let bottom = first.bottom <= second.top && first.left === second.left;
-
-  return left || right || top || bottom;
+  switch (dir) {
+    case 'left':
+      return first.left <= second.right && first.top === second.top;
+    case 'right':
+      return first.right >= second.left && first.top === second.top;
+    case 'up':
+      return first.top >= second.bottom && first.left === second.left;
+    case 'down':
+      return first.bottom <= second.top && first.left === second.left;
+    default:
+      return true;
+  }
 }
 
 function gridBoundary(tile, grid) {
@@ -152,17 +157,24 @@ function gridBoundary(tile, grid) {
   return left || top || right || bottom;
 }
 
-function withinBoundaries(self, grid) {
-  if (gridBoundary(self, grid)) return true;
+function withinBoundaries(self, grid, dir) {
+  if (gridBoundary(self, grid)){
+    console.log('grid boundary');
+    return true;
+  }
 
   let group;
   let idx = self.parentNode.getAttribute('id');
-  // debugger
   for (let i = 1; i < 17; i++) {
     if (i == idx) continue;
     group = document.getElementById(`${i}`);
     let children = group.children;
-    if (children.length === 3 && tileBoundary(self, children[0])) return true;
+    // debugger
+    if (children.length === 3 && tileBoundary(self, children[1], dir)) {
+      console.log('tile boundary');
+      console.log(self);
+      return true;
+    }
   }
 
   return false;
