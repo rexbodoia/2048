@@ -124,7 +124,7 @@ function boundaries(tile) {
   return { left, right, top, bottom };
 }
 
-function withinBoundaries(first, second) {
+function tileBoundary(first, second) {
   first = boundaries(first);
   second = boundaries(second);
 
@@ -134,4 +134,21 @@ function withinBoundaries(first, second) {
   let bottom = first.bottom <= second.top;
 
   return left || right || top || bottom;
+}
+
+function gridBoundary(tile, grid) {
+  let left = tile.getAttribute('x') - 32 <= grid.getAttribute('x');
+  let top = tile.getAttribute('y') - 32 <= grid.getAttribute('y');
+  let right = parseInt(tile.getAttribute('x')) + parseInt(tileWidth) + 32 > parseInt(grid.getAttribute('x')) + parseInt(gridWidth);
+  let bottom = parseInt(tile.getAttribute('y')) + parseInt(tileHeight) + 32 > parseInt(grid.getAttribute('y')) + parseInt(gridHeight);
+
+  return left || top || right || bottom;
+}
+
+function boundaries(self, grid) {
+  let group;
+  for (let i = 0; i < 17; i++) {
+    group = document.getElementById(`${i}`);
+
+  }
 }
