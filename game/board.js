@@ -12,9 +12,10 @@ const generateNums = () => {
       let group = document.getElementById(`${idx}`);
 
       if (group.children.length === 1) {
-        let square = group.children[0];
-        let value = (Math.floor(Math.random() * 2) + 1) * 2;
+        let square = createRect(group.children[0].getAttribute('x'), group.children[0].getAttribute('y'));
+        group.appendChild(square);
 
+        let value = (Math.floor(Math.random() * 2) + 1) * 2;
         group.appendChild(createNumber(square, value));
         count += 1;
       }
@@ -42,7 +43,7 @@ function createNumber(square, value) {
   let y = square.getAttribute('y');
 
   text.setAttribute('class', 'text');
-  text.setAttribute('x', parseInt(x) + 33);
+  text.setAttribute('x', parseInt(x) + 32);
   text.setAttribute('y', parseInt(y) + 85);
   text.setAttribute('fill', '#C4DFE6');
 
