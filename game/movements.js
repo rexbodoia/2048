@@ -22,6 +22,12 @@ function moveEach(group, direction) {
   let tileWidth = tile.getAttribute('width');
   let tileHeight = tile.getAttribute('height');
 
+  let otherNumbers = document.querySelectorAll('.text');
+  let otherTiles = [];
+  for (let i = 0; i < otherNumbers.length; i++) {
+    otherTiles.push(otherNumbers[i].parentNode.children[1]);
+  }
+
   switch (direction) {
     case 'left':
       intr = setInterval(() => {
@@ -106,4 +112,26 @@ function resetGroups(group, idx, tile, number) {
   group.removeChild(tile);
   newGroup.appendChild(tile);
   newGroup.appendChild(number);
+}
+
+function boundaries(tile) {
+  left = tile.getAttribute('x');
+  right = left + tile.getAttribute('width');
+
+  top = tile.getAttribute('y');
+  bottom = top + tile.getAttribute('height');
+
+  return { left, right, top, bottom };
+}
+
+function withinBoundaries(first, second) {
+  first = boundaries(first);
+  second = boundaries(second);
+
+  let left = first.right >= second.left;
+  let right = first.left <= second.right;
+  let top = first.top >= second.bottom;
+  let bottom = first.bottom <= second.top;
+
+  return left || right || top || bottom;
 }

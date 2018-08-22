@@ -43,7 +43,7 @@ function createNumber(square, value) {
   let y = square.getAttribute('y');
 
   text.setAttribute('class', 'text');
-  text.setAttribute('x', parseInt(x) + 32);
+  text.setAttribute('x', parseInt(x) + 33);
   text.setAttribute('y', parseInt(y) + 85);
   text.setAttribute('fill', '#C4DFE6');
 
