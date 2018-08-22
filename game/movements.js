@@ -34,6 +34,7 @@ function moveEach(group, direction) {
       intr = setInterval(() => {
         tile.setAttribute('x', parseInt(tile.getAttribute('x')) - 1);
         number.setAttribute('x', parseInt(number.getAttribute('x')) - 1);
+        console.log('iteration');
         if (withinBoundaries(tile, grid, 'left')) {
           // let x = parseInt(grid.getAttribute('x')) + 12;
           // tile.setAttribute('x', x);
@@ -126,20 +127,29 @@ function boundaries(tile) {
 }
 
 function tileBoundary(first, second, dir) {
+  console.log(second);
   first = boundaries(first);
   second = boundaries(second);
 
   switch (dir) {
     case 'left':
-      return first.left <= second.right && first.top === second.top;
+      if (first.left > second.left) {
+        return first.left <= second.right && first.top === second.top;
+      }
     case 'right':
-      return first.right >= second.left && first.top === second.top;
+      if (first.right < second.right) {
+        return first.right >= second.left && first.top === second.top;
+      }
     case 'up':
-      return first.top >= second.bottom && first.left === second.left;
+      if (first.top > second.top) {
+        return first.top >= second.bottom && first.left === second.left;
+      }
     case 'down':
-      return first.bottom <= second.top && first.left === second.left;
+      if (first.bottom < second.bottom) {
+        return first.bottom <= second.top && first.left === second.left;
+      }
     default:
-      return true;
+      return false;
   }
 }
 
@@ -169,7 +179,6 @@ function withinBoundaries(self, grid, dir) {
     if (i == idx) continue;
     group = document.getElementById(`${i}`);
     let children = group.children;
-    // debugger
     if (children.length === 3 && tileBoundary(self, children[1], dir)) {
       console.log('tile boundary');
       console.log(self);
