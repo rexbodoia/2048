@@ -60,6 +60,12 @@ function moveEach(group, direction) {
       }, 1);
       break;
     case 'right':
+      for (let idx = parseInt(group.getAttribute('id')); idx < 17; idx+=4) {
+        if (idx > 12) {
+          resetGroups(group, idx, tile, number);
+          break;
+        }
+      }
       intr = setInterval(() => {
         tile.setAttribute('x', parseInt(tile.getAttribute('x')) + 15);
         number.setAttribute('x', parseInt(number.getAttribute('x')) + 15);
@@ -68,17 +74,11 @@ function moveEach(group, direction) {
           tile.setAttribute('x', x - tileWidth);
           number.setAttribute('x', x - 80);
           clearInterval(intr);
-          for (let idx = parseInt(group.getAttribute('id')); idx < 17; idx+=4) {
-            if (idx > 12) {
-              resetGroups(group, idx, tile, number);
-              break;
-            }
-          }
         }
       }, 1);
       break;
     case 'down':
-      for (let idx = parseInt(group.getAttribute('id')); idx < 16; idx++) {
+      for (let idx = parseInt(group.getAttribute('id')); idx < 17; idx++) {
         if (idx % 4 === 0) {
           resetGroups(group, idx, tile, number);
           break;
@@ -101,7 +101,6 @@ function moveEach(group, direction) {
 }
 
 function resetGroups(group, idx, tile, number) {
-  console.log(idx);
   let newGroup = document.getElementById(`${idx}`);
   group.removeChild(number);
   group.removeChild(tile);
