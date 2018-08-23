@@ -72,7 +72,7 @@ function NumberTile(board, number, row, col) {
   this.left = x;
   this.top = y;
   this.right = this.left + board.tileSize;
-  this.bottom = this.right + board.tileSize;
+  this.bottom = this.top + board.tileSize;
 
   this.tile = createFrontTile(x, y, board.tileSize);
 
