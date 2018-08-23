@@ -159,10 +159,10 @@ function gridBoundary(tile, grid) {
   const tileWidth = tile.getAttribute('width');
   const tileHeight = tile.getAttribute('height');
 
-  let left = tile.getAttribute('x') <= grid.getAttribute('x');
-  let top = tile.getAttribute('y') <= grid.getAttribute('y');
-  let right = parseInt(tile.getAttribute('x')) + parseInt(tileWidth) > parseInt(grid.getAttribute('x')) + parseInt(gridWidth);
-  let bottom = parseInt(tile.getAttribute('y')) + parseInt(tileHeight) > parseInt(grid.getAttribute('y')) + parseInt(gridHeight);
+  let left = tile.getAttribute('x') - 12 <= grid.getAttribute('x');
+  let top = tile.getAttribute('y') - 12 <= grid.getAttribute('y');
+  let right = parseInt(tile.getAttribute('x')) + parseInt(tileWidth) > parseInt(grid.getAttribute('x')) + parseInt(gridWidth) - 12;
+  let bottom = parseInt(tile.getAttribute('y')) + parseInt(tileHeight) > parseInt(grid.getAttribute('y')) + parseInt(gridHeight) - 12;
 
   return left || top || right || bottom;
 }

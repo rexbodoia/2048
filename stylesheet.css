@@ -5,12 +5,20 @@
   text-shadow: 2px 2px #07575B;
 }
 
-.tile {
-  /* stroke-width: 12; */
+.background-back-tile {
+  fill: #07575B;
+}
+
+.background-front-tile {
   fill: #66A5AD;
-  /* stroke: #07575B; */
-  /* height: 113px;
-  width: 113px; */
+}
+
+.two-tile {
+
+}
+
+.four-tile {
+  
 }
 
 .group {
