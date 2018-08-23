@@ -44,19 +44,25 @@ function backgroundTile(x, y, size) {
 }
 
 function generateNumbers(board) {
-  let col = Math.floor(Math.random() * 4);
-  let row = Math.floor(Math.random() * 4);
-  let num = Math.floor(Math.random() * 4);
+  let count = 0;
 
-  if (num < 3) {
-    num = 2;
-  } else {
-    num = 4;
+  while (count < 2) {
+    let col = Math.floor(Math.random() * 4);
+    let row = Math.floor(Math.random() * 4);
+    let num = Math.floor(Math.random() * 4);
+
+    if(board.grid[col][row] != null) continue;
+
+    if (num < 3) {
+      num = 2;
+    } else {
+      num = 4;
+    }
+
+    board.grid[col][row] = new NumberTile(board, num, row, col);
+    count += 1;
   }
-
-  board.grid[col][row] = new NumberTile(board, num, row, col);
 }
-
 
 function NumberTile(board, number, row, col) {
   let [x, y] = indexToLocation(board, row, col);
@@ -73,7 +79,7 @@ function NumberTile(board, number, row, col) {
       this.number = createNumber(x, y, 4);
       break;
   }
-  
+
   this.group = document.createElementNS(svgns, 'g');
 
   this.group.appendChild(this.tile);
@@ -118,87 +124,4 @@ function createNumber(x, y, value) {
   text.appendChild(textNode);
 
   return text;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let rand = Math.floor(Math.random() * 8);
-
-function createRect(x, y) {
-  let rect = document.createElementNS(svgns, 'rect');
-  rect.setAttribute('x', x);
-  rect.setAttribute('y', y);
-  rect.setAttribute('rx', 20);
-  rect.setAttribute('ry', 20);
-  rect.setAttribute('height', 113);
-  rect.setAttribute('width', 113);
-  rect.setAttribute('class', 'tile');
-
-  return rect;
-}
-
-function createGroup(idx, rect) {
-  let group = document.createElementNS(svgns, 'g');
-
-  group.setAttribute('id', `${idx}`);
-  group.setAttribute('class', 'group');
-
-  group.appendChild(rect);
-
-  return group;
-}
-
-function createInitialBoard() {
-  let idx = 1;
-  for (let x = 456; x < 950; x += 125) {
-    for (let y = 156; y < 650; y += 125) {
-      let row = (y - 150) / 125;
-      let col = (x - 450) / 125;
-
-      let rect = createRect(x, y);
-      let group = createGroup(idx, rect);
-
-      canvas.appendChild(group);
-      idx += 1;
-    }
-  }
-  generateNums(rand, idx);
-}
-
-const generateNums = () => {
-  let count = 0;
-
-  while (count < 2) {
-    if (Math.floor(Math.random() * 8) === rand) {
-      let idx = Math.floor(Math.random() * 16 + 1);
-      let group = document.getElementById(`${idx}`);
-
-      if (group.children.length === 1) {
-        let square = createRect(group.children[0].getAttribute('x'), group.children[0].getAttribute('y'));
-        group.appendChild(square);
-
-        let value = (Math.floor(Math.random() * 2) + 1) * 2;
-        group.appendChild(createNumber(square, value));
-        count += 1;
-      }
-    }
-  }
 }
