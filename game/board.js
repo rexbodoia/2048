@@ -69,10 +69,10 @@ function NumberTile(board, number, row, col) {
   this.col  = col;
 
   let [x, y] = indexToLocation(board, row, col);
-  this.x = x;
-  this.y = y;
-  this.right = this.x + board.tileSize;
-  this.bottom = this.y + board.tileSize;
+  this.left = x;
+  this.top = y;
+  this.right = this.left + board.tileSize;
+  this.bottom = this.right + board.tileSize;
 
   this.tile = createFrontTile(x, y, board.tileSize);
 

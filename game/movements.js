@@ -1,38 +1,70 @@
+// const canvas = document.getElementById('myCanvas');
+
 function moveAll(board, direction) {
   for (let row = 0; row < board.size; row++) {
     for (let col = 0; col < board.size; col++) {
-      if (board.grid[row][col] != null) {
-        board.grid[row][col].move(board, direction);
+      let tile = board.grid[row][col];
+      if (tile != null) {
+        tile.move(row, col, board, direction);
       }
     }
   }
 }
 
-// function leftObstacles(row, col, board) {
-//   if (board.size)
-// }
-//
-// function rightObstacles(row, col, board) {
-//
-// }
-//
-// function upObstacles(row, col, board) {
-//
-// }
-//
-// function downObstacles(row, col, board) {
-//
+// function leftObstacles(intr, tile, row, col, board) {
+//   for (let i = 1; i < col; i++) {
+//     if (board.grid[row][col - i] != null) {
+//       if (tile.sameNumber(board.grid[row][col - i])) {
+//       } else {
+//         clearInterval(intr);
+//       }
+//     }
+//   }
 // }
 
-NumberTile.prototype.move = function(board, direction) {
+NumberTile.prototype.tileBoundary = function(otherTile, dir) {
+  switch (dir) {
+    case 'left':
+    if (this.left > otherTile.left) {
+      return this.left <= otherTile.right;
+    }
+    case 'right':
+    if (this.right < otherTile.right) {
+      return this.right >= otherTile.left;
+    }
+    case 'up':
+    if (this.top > otherTile.top) {
+      return this.top >= otherTile.bottom;
+    }
+    case 'down':
+    if (this.bottom < otherTile.bottom) {
+      return this.bottom <= otherTile.top;
+    }
+  }
+}
+
+NumberTile.prototype.sameNumber = function(otherTile) {
+  this.number === otherTile.number;
+}
+
+NumberTile.prototype.move = function(row, col, board, direction) {
   let intr;
   switch (direction) {
     case 'left':
       intr = setInterval(() => {
         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) - 1);
         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) - 1);
-        if (this.tile.getAttribute('x') <= board.x + 6){
+        this.left -= 1;
+        this.right -= 1;
+        if (this.tile.getAttribute('x') <= board.x + 6) {
           clearInterval(intr);
+        } else {
+          for (let i = 0; i < board.size; i++) {
+            if(board.grid[row][i] == null) continue;
+            if (this.tileBoundary(board.grid[row][i], 'left')){
+              clearInterval(intr);
+            }
+          }
         }
       }, 1);
       break;
@@ -40,8 +72,17 @@ NumberTile.prototype.move = function(board, direction) {
       intr = setInterval(() => {
         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) - 1);
         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) - 1);
+        this.top -= 1;
+        this.bottom -= 1;
         if (this.tile.getAttribute('y') <= board.y + 6){
           clearInterval(intr);
+        } else {
+          for (let i = board.size - 1; i >= 0; i--) {
+            if(board.grid[i][col] == null) continue;
+            if (this.tileBoundary(board.grid[i][col], 'left')){
+              clearInterval(intr);
+            }
+          }
         }
       }, 1);
       break;
@@ -49,6 +90,8 @@ NumberTile.prototype.move = function(board, direction) {
       intr = setInterval(() => {
         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) + 1);
         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) + 1);
+        this.left += 1;
+        this.right += 1;
         if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6){
           clearInterval(intr);
         }
@@ -58,6 +101,8 @@ NumberTile.prototype.move = function(board, direction) {
       intr = setInterval(() => {
         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) + 1);
         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) + 1);
+        this.top += 1;
+        this.bottom += 1;
         if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6){
           clearInterval(intr);
         }
@@ -65,8 +110,6 @@ NumberTile.prototype.move = function(board, direction) {
       break;
   }
 }
-
-
 
 
 
