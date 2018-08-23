@@ -8,7 +8,7 @@ function moveAll(board, direction) {
   }
 }
 
-NumberTile.prototype.move = function(direction) {
+NumberTile.prototype.move = function(direction, endpoint) {
   switch (direction) {
     case 'left':
       intr = setInterval(() => {
