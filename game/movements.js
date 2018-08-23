@@ -34,12 +34,12 @@ NumberTile.prototype.tileBoundary = function(otherTile, dir) {
     }
     case 'up':
     if (this.top > otherTile.top) {
-      console.log(this.top >= otherTile.bottom);
-      return this.top >= otherTile.bottom;
+      console.log(this.top <= otherTile.bottom);
+      return this.top <= otherTile.bottom;
     }
     case 'down':
     if (this.bottom < otherTile.bottom) {
-      return this.bottom <= otherTile.top;
+      return this.bottom >= otherTile.top;
     }
   }
 }
