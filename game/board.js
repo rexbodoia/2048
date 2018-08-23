@@ -43,7 +43,7 @@ function backgroundTile(x, y, size) {
   return group;
 }
 
-function generateNumbers(board) {
+Board.prototype.generateNumbers = function() {
   let count = 0;
 
   while (count < 2) {
@@ -51,7 +51,7 @@ function generateNumbers(board) {
     let row = Math.floor(Math.random() * 4);
     let num = Math.floor(Math.random() * 4);
 
-    if(board.grid[col][row] != null) continue;
+    if(this.grid[col][row] != null) continue;
 
     if (num < 3) {
       num = 2;
@@ -59,13 +59,15 @@ function generateNumbers(board) {
       num = 4;
     }
 
-    board.grid[col][row] = new NumberTile(board, num, row, col);
+    this.grid[col][row] = new NumberTile(this, num, row, col);
     count += 1;
   }
 }
 
 function NumberTile(board, number, row, col) {
   let [x, y] = indexToLocation(board, row, col);
+  this.x = x;
+  this.y = y;
 
   this.tile = createFrontTile(x, y, board.tileSize);
 
@@ -86,16 +88,14 @@ function NumberTile(board, number, row, col) {
   this.group.appendChild(this.number);
 
   canvas.appendChild(this.group);
-  return this.group;
 }
 
 function indexToLocation(board, row, col) {
-  const gridSize = board.gridSize;
   const x = board.x;
   const y = board.y;
   const tileSize = board.tileSize;
 
-  return [x + tileSize * col, y + tileSize * row];
+  return [x + tileSize * row, y + tileSize * col];
 }
 
 function createFrontTile(x, y, size) {
