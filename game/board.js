@@ -4,7 +4,6 @@ const length = 480;
 
 function Board(size) {
   this.size = size;
-  this.gridSize = length / size;
   this.x = window.innerWidth / 2 - length / 2 - 10;
   this.y = 150;
   this.tileSize = length / size;
@@ -17,7 +16,7 @@ function Board(size) {
 
   for (let i = 0; i < size; i++) {
     for(let j = 0; j < size; j++) {
-      backgroundTile(this.x + i * this.tileSize, this.y + j * this.tileSize, this.gridSize);
+      backgroundTile(this.x + i * this.tileSize, this.y + j * this.tileSize, this.tileSize);
     }
   }
 }
@@ -61,7 +60,6 @@ function generateNumbers(board) {
 
 function NumberTile(board, number, row, col) {
   let [x, y] = indexToLocation(board, row, col);
-  console.log(x, y);
 
   this.tile = createFrontTile(x, y, board.tileSize);
 
@@ -70,12 +68,12 @@ function NumberTile(board, number, row, col) {
       this.tile.setAttribute('class', 'two-tile');
       this.number = createNumber(x, y, 2);
       break;
-    case 2:
+    case 4:
       this.tile.setAttribute('class', 'four-tile');
       this.number = createNumber(x, y, 4);
       break;
   }
-
+  
   this.group = document.createElementNS(svgns, 'g');
 
   this.group.appendChild(this.tile);
@@ -90,9 +88,8 @@ function indexToLocation(board, row, col) {
   const x = board.x;
   const y = board.y;
   const tileSize = board.tileSize;
-  console.log(gridSize);
 
-  return [(x + tileSize) * col, (y + tileSize * row)];
+  return [x + tileSize * col, y + tileSize * row];
 }
 
 function createFrontTile(x, y, size) {
