@@ -1,37 +1,66 @@
 function moveAll(board, direction) {
-  for (let i = 0; i < board.size; i++) {
-    for (let j = 0; j < board.size; j++) {
-      if (board.grid[i][j] != null) {
-        board.grid[i][j].move(direction);
+  for (let row = 0; row < board.size; row++) {
+    for (let col = 0; col < board.size; col++) {
+      if (board.grid[row][col] != null) {
+        board.grid[row][col].move(board, direction);
       }
     }
   }
 }
 
-NumberTile.prototype.move = function(direction, endpoint) {
+// function leftObstacles(row, col, board) {
+//   if (board.size)
+// }
+//
+// function rightObstacles(row, col, board) {
+//
+// }
+//
+// function upObstacles(row, col, board) {
+//
+// }
+//
+// function downObstacles(row, col, board) {
+//
+// }
+
+NumberTile.prototype.move = function(board, direction) {
+  let intr;
   switch (direction) {
     case 'left':
       intr = setInterval(() => {
         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) - 1);
         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) - 1);
+        if (this.tile.getAttribute('x') <= board.x + 6){
+          clearInterval(intr);
+        }
       }, 1);
       break;
     case 'up':
       intr = setInterval(() => {
         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) - 1);
         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) - 1);
+        if (this.tile.getAttribute('y') <= board.y + 6){
+          clearInterval(intr);
+        }
       }, 1);
       break;
     case 'right':
       intr = setInterval(() => {
         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) + 1);
         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) + 1);
+        if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6){
+          clearInterval(intr);
+        }
       }, 1);
       break;
     case 'down':
       intr = setInterval(() => {
         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) + 1);
         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) + 1);
+        if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6){
+          clearInterval(intr);
+        }
       }, 1);
       break;
   }

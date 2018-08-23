@@ -65,9 +65,14 @@ Board.prototype.generateNumbers = function() {
 }
 
 function NumberTile(board, number, row, col) {
+  this.row = row;
+  this.col  = col;
+
   let [x, y] = indexToLocation(board, row, col);
   this.x = x;
   this.y = y;
+  this.right = this.x + board.tileSize;
+  this.bottom = this.y + board.tileSize;
 
   this.tile = createFrontTile(x, y, board.tileSize);
 
@@ -125,3 +130,11 @@ function createNumber(x, y, value) {
 
   return text;
 }
+
+// NumberTile.prototype.x = function(x) {
+//   this.x = x;
+// }
+//
+// NumberTile.prototype.y = function(y) {
+//   this.y = y;
+// }
