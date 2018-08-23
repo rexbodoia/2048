@@ -34,7 +34,6 @@ NumberTile.prototype.tileBoundary = function(otherTile, dir) {
     }
     case 'up':
     if (this.top > otherTile.top) {
-      console.log(this.top <= otherTile.bottom);
       return this.top <= otherTile.bottom;
     }
     case 'down':
@@ -80,7 +79,7 @@ NumberTile.prototype.move = function(row, col, board, direction) {
         } else {
           for (let i = board.size - 1; i >= 0; i--) {
             if(board.grid[i][col] == null) continue;
-            if (this.tileBoundary(board.grid[i][col], 'left')){
+            if (this.tileBoundary(board.grid[i][col], 'up')){
               clearInterval(intr);
             }
           }
@@ -93,8 +92,15 @@ NumberTile.prototype.move = function(row, col, board, direction) {
         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) + 1);
         this.left += 1;
         this.right += 1;
-        if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6){
+        if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6) {
           clearInterval(intr);
+        } else {
+          for (let i = board.size; i >= 0; i--) {
+            if(board.grid[row][i] == null) continue;
+            if (this.tileBoundary(board.grid[row][i], 'right')){
+              clearInterval(intr);
+            }
+          }
         }
       }, 1);
       break;
@@ -104,8 +110,15 @@ NumberTile.prototype.move = function(row, col, board, direction) {
         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) + 1);
         this.top += 1;
         this.bottom += 1;
-        if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6){
+        if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6) {
           clearInterval(intr);
+        } else {
+          for (let i = 0; i < board.size; i++) {
+            if(board.grid[i][col] == null) continue;
+            if (this.tileBoundary(board.grid[i][col], 'down')){
+              clearInterval(intr);
+            }
+          }
         }
       }, 1);
       break;
