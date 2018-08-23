@@ -5,11 +5,61 @@ function moveAll(board, direction) {
     for (let col = 0; col < board.size; col++) {
       let tile = board.grid[row][col];
       if (tile != null) {
-        tile.move(row, col, board, direction);
+        board.update(direction);
       }
     }
   }
 }
+
+NumberTile.prototype.sameNumber = function(otherTile) {
+  this.number === otherTile.number;
+}
+
+Board.prototype.update = function(dir) {
+  switch (dir) {
+    case 'left':
+    for (let row = 0; row < board.size; row++) {
+      for (let col = 1; col < board.size; col++) {
+        let tile = this.grid[row][col];
+        if (tile != null) {
+          while(col > 0 && this.grid[row][col - 1] == null) {
+            tile.moveOne(row, col, board, dir);
+            this.grid[row][col - 1] = tile;
+            tile = this.grid[row][col - 1];
+            this.grid[row][col] = null;
+            col -= 1;
+            console.log(this);
+          }
+          if (col > 0 && tile.number == this.grid[row][col - 1].number) {
+            merge(tile, this.grid[row - 1][col]);
+         }
+        }
+      }
+    }
+    break;
+  }
+}
+
+NumberTile.prototype.moveOne = function(row, col, board, dir) {
+  let intr;
+  let counter = 0;
+  switch (dir) {
+    case 'left':
+      intr = setInterval(() => {
+        this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) - 4);
+        this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) - 4);
+        this.left -= 4;
+        this.right -= 4;
+        counter += 1;
+        if (counter === board.tileSize / 4) {
+          clearInterval(intr);
+        }
+      }, 1);
+      break;
+  }
+}
+
+
 
 // function leftObstacles(intr, tile, row, col, board) {
 //   for (let i = 1; i < col; i++) {
@@ -22,108 +72,105 @@ function moveAll(board, direction) {
 //   }
 // }
 
-NumberTile.prototype.tileBoundary = function(otherTile, dir) {
-  switch (dir) {
-    case 'left':
-    if (this.left > otherTile.left) {
-      return this.left <= otherTile.right;
-    }
-    case 'right':
-    if (this.right < otherTile.right) {
-      return this.right >= otherTile.left;
-    }
-    case 'up':
-    if (this.top > otherTile.top) {
-      return this.top <= otherTile.bottom;
-    }
-    case 'down':
-    if (this.bottom < otherTile.bottom) {
-      return this.bottom >= otherTile.top;
-    }
-  }
-}
+// NumberTile.prototype.tileBoundary = function(otherTile, dir) {
+//   switch (dir) {
+//     case 'left':
+//     if (this.left > otherTile.left) {
+//       return this.left <= otherTile.right;
+//     }
+//     case 'right':
+//     if (this.right < otherTile.right) {
+//       return this.right >= otherTile.left;
+//     }
+//     case 'up':
+//     if (this.top > otherTile.top) {
+//       return this.top <= otherTile.bottom;
+//     }
+//     case 'down':
+//     if (this.bottom < otherTile.bottom) {
+//       return this.bottom >= otherTile.top;
+//     }
+//   }
+// }
 
-NumberTile.prototype.sameNumber = function(otherTile) {
-  this.number === otherTile.number;
-}
+// NumberTile.prototype.move = function(row, col, board, direction) {
+//   let intr;
+//   switch (direction) {
+//     case 'left':
+//       intr = setInterval(() => {
+//         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) - 1);
+//         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) - 1);
+//         this.left -= 1;
+//         this.right -= 1;
+//         if (this.tile.getAttribute('x') <= board.x + 6) {
+//           clearInterval(intr);
+//         } else {
+//           for (let i = 0; i < board.size; i++) {
+//             if(board.grid[row][i] == null) continue;
+//             if (this.tileBoundary(board.grid[row][i], 'left')){
+//               clearInterval(intr);
+//             }
+//           }
+//         }
+//       }, 1);
+//       break;
+//     case 'up':
+//       intr = setInterval(() => {
+//         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) - 1);
+//         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) - 1);
+//         this.top -= 1;
+//         this.bottom -= 1;
+//         if (this.tile.getAttribute('y') <= board.y + 6){
+//           clearInterval(intr);
+//         } else {
+//           for (let i = board.size - 1; i >= 0; i--) {
+//             if(board.grid[i][col] == null) continue;
+//             if (this.tileBoundary(board.grid[i][col], 'up')){
+//               clearInterval(intr);
+//             }
+//           }
+//         }
+//       }, 1);
+//       break;
+//     case 'right':
+//       intr = setInterval(() => {
+//         this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) + 1);
+//         this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) + 1);
+//         this.left += 1;
+//         this.right += 1;
+//         if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6) {
+//           clearInterval(intr);
+//         } else {
+//           for (let i = board.size; i >= 0; i--) {
+//             if(board.grid[row][i] == null) continue;
+//             if (this.tileBoundary(board.grid[row][i], 'right')){
+//               clearInterval(intr);
+//             }
+//           }
+//         }
+//       }, 1);
+//       break;
+//     case 'down':
+//       intr = setInterval(() => {
+//         this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) + 1);
+//         this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) + 1);
+//         this.top += 1;
+//         this.bottom += 1;
+//         if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6) {
+//           clearInterval(intr);
+//         } else {
+//           for (let i = 0; i < board.size; i++) {
+//             if(board.grid[i][col] == null) continue;
+//             if (this.tileBoundary(board.grid[i][col], 'down')){
+//               clearInterval(intr);
+//             }
+//           }
+//         }
+//       }, 1);
+//       break;
+//   }
+// }
 
-NumberTile.prototype.move = function(row, col, board, direction) {
-  let intr;
-  switch (direction) {
-    case 'left':
-      intr = setInterval(() => {
-        this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) - 1);
-        this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) - 1);
-        this.left -= 1;
-        this.right -= 1;
-        if (this.tile.getAttribute('x') <= board.x + 6) {
-          clearInterval(intr);
-        } else {
-          for (let i = 0; i < board.size; i++) {
-            if(board.grid[row][i] == null) continue;
-            if (this.tileBoundary(board.grid[row][i], 'left')){
-              clearInterval(intr);
-            }
-          }
-        }
-      }, 1);
-      break;
-    case 'up':
-      intr = setInterval(() => {
-        this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) - 1);
-        this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) - 1);
-        this.top -= 1;
-        this.bottom -= 1;
-        if (this.tile.getAttribute('y') <= board.y + 6){
-          clearInterval(intr);
-        } else {
-          for (let i = board.size - 1; i >= 0; i--) {
-            if(board.grid[i][col] == null) continue;
-            if (this.tileBoundary(board.grid[i][col], 'up')){
-              clearInterval(intr);
-            }
-          }
-        }
-      }, 1);
-      break;
-    case 'right':
-      intr = setInterval(() => {
-        this.tile.setAttribute('x', parseInt(this.tile.getAttribute('x')) + 1);
-        this.number.setAttribute('x', parseInt(this.number.getAttribute('x')) + 1);
-        this.left += 1;
-        this.right += 1;
-        if (this.tile.getAttribute('x') >= board.x + length - board.tileSize + 6) {
-          clearInterval(intr);
-        } else {
-          for (let i = board.size; i >= 0; i--) {
-            if(board.grid[row][i] == null) continue;
-            if (this.tileBoundary(board.grid[row][i], 'right')){
-              clearInterval(intr);
-            }
-          }
-        }
-      }, 1);
-      break;
-    case 'down':
-      intr = setInterval(() => {
-        this.tile.setAttribute('y', parseInt(this.tile.getAttribute('y')) + 1);
-        this.number.setAttribute('y', parseInt(this.number.getAttribute('y')) + 1);
-        this.top += 1;
-        this.bottom += 1;
-        if (this.tile.getAttribute('y') >= board.y + length - board.tileSize + 6) {
-          clearInterval(intr);
-        } else {
-          for (let i = 0; i < board.size; i++) {
-            if(board.grid[i][col] == null) continue;
-            if (this.tileBoundary(board.grid[i][col], 'down')){
-              clearInterval(intr);
-            }
-          }
-        }
-      }, 1);
-      break;
-  }
-}
 
 
 
