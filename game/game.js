@@ -21,7 +21,7 @@ document.addEventListener('keydown', (event) => {
   }
   else if (!gameOver) {
     let text = document.createElementNS(svgns, 'text');
-    text.setAttribute('x', window.innerWidth / 2 - 250);
+    text.setAttribute('x', window.innerWidth / 2 - 320);
     text.setAttribute('y', 400);
     text.setAttribute('class', 'game-over');
 
@@ -29,7 +29,7 @@ document.addEventListener('keydown', (event) => {
 
     text.appendChild(textNode);
     canvas.appendChild(text);
-
+    document.body.style.backgroundColor = "rgba(0, 0, 0)";
     gameOver = true;
   }
 });

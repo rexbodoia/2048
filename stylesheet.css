@@ -88,11 +88,11 @@
 }
 
 .game-over {
-  font-size: 100px;
+  font-size: 120px;
   font-weight: 600;
   font-family: sans-serif;
   fill: #C05B34;
-  text-shadow: 1px 1px #07575B;
+  text-shadow: 2px 2px #07575B;
 }
 
 body {
