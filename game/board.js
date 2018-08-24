@@ -172,6 +172,8 @@ function createNumber(x, y, value) {
     y = parseInt(y) + 81;
     text.setAttribute('class', 'three-digit-text');
   } else {
+    x = parseInt(x) + 9;
+    y = parseInt(y) + 77;
     text.setAttribute('class', 'four-digit-text');
   }
 
