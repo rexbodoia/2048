@@ -29,6 +29,7 @@ Board.prototype.update = function(dir) {
             col -= 1;
           }
           if (col > 0 && equalNumbers(tile, this.grid[row][col - 1])) {
+            tile.moveOne(row, col, board, dir);
             merge(tile, this.grid[row][col - 1], board);
          }
         }
@@ -49,6 +50,7 @@ Board.prototype.update = function(dir) {
             col += 1;
           }
           if (col < board.size - 1 && equalNumbers(tile, this.grid[row][col + 1])) {
+            tile.moveOne(row, col, board, dir);
             merge(tile, this.grid[row][col + 1], board);
          }
         }
@@ -69,6 +71,7 @@ Board.prototype.update = function(dir) {
             row -= 1;
           }
           if (row > 0 && equalNumbers(tile, this.grid[row - 1][col])) {
+            tile.moveOne(row, col, board, dir);
             merge(tile, this.grid[row - 1][col], board);
          }
         }
@@ -89,6 +92,7 @@ Board.prototype.update = function(dir) {
             row += 1;
           }
           if (row < board.size - 1 && equalNumbers(tile, this.grid[row + 1][col])) {
+            tile.moveOne(row, col, board, dir);
             merge(tile, this.grid[row + 1][col], board);
          }
         }
