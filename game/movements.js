@@ -177,34 +177,34 @@ function merge(first, second, board) {
 function setBackground(number) {
   switch (number) {
     case 4:
-      document.body.style.backgroundColor = "rgb(230,230,255)";
+      document.body.style.backgroundColor = "rgb(190,190,255)";
       break;
     case 8:
-      document.body.style.backgroundColor = "rgb(205,205,255)";
+      document.body.style.backgroundColor = "rgb(190,255,190)";
       break;
     case 16:
-    document.body.style.backgroundColor = "rgb(180,180,255)";
+    document.body.style.backgroundColor = "rgb(255,190,190)";
       break;
     case 32:
-    document.body.style.backgroundColor = "rgb(155,155,255)";
+    document.body.style.backgroundColor = "rgb(140,140,255)";
       break;
     case 64:
-    document.body.style.backgroundColor = "rgb(130,130,255)";
+    document.body.style.backgroundColor = "rgb(140,255,140)";
       break;
     case 128:
-    document.body.style.backgroundColor = "rgb(105,105,255)";
+    document.body.style.backgroundColor = "rgb(255,140,140)";
       break;
     case 256:
-    document.body.style.backgroundColor = "rgb(80,80,255)";
+    document.body.style.backgroundColor = "rgb(100,100,255)";
       break;
     case 512:
-    document.body.style.backgroundColor = "rgb(55,55,255)";
+    document.body.style.backgroundColor = "rgb(100,255,100)";
       break;
     case 1024:
-    document.body.style.backgroundColor = "rgb(30,30,255)";
+    document.body.style.backgroundColor = "rgb(255,100,100)";
       break;
     case 2048:
-    document.body.style.backgroundColor = "rgb(5,5,255)";
+    document.body.style.backgroundColor = "rgb(255,0,0)";
       break;
   }
 }

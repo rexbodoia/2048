@@ -2,7 +2,7 @@
   font-size: 100px;
   font-weight: 600;
   font-family: sans-serif;
-  text-shadow: 3px 3px #07575B;
+  text-shadow: 2px 2px #C05B34;
 }
 
 #instructions {
@@ -25,43 +25,43 @@
 }
 
 .four-tile {
-  fill: rgb(230,230,255);
+  fill: rgb(190,190,255);
 }
 
 .eight-tile {
-  fill: rgb(205,205,255);
+  fill: rgb(190,255,190);
 }
 
 .sixteen-tile {
-  fill: rgb(180,180,255);
+  fill: rgb(255,190,190);
 }
 
 .thirty-two-tile {
-  fill: rgb(155,155,255);
+  fill: rgb(140,140,255);
 }
 
 .sixty-four-tile {
-  fill: rgb(130,130,255);
+  fill: rgb(140,255,140);
 }
 
 .one-twenty-eight {
-  fill: rgb(105,105,255);
+  fill: rgb(255,140,140);
 }
 
 .two-fifty-six {
-  fill: rgb(80,80,255);
+  fill: rgb(100,100,255);
 }
 
 .five-twelve {
-  fill: rgb(55,55,255);
+  fill: rgb(100,255,100);
 }
 
 .ten-twenty-four {
-  fill: rgb(30,30,255);
+  fill: rgb(255,100,100);
 }
 
 .twenty-forty-eight {
-  fill: rgb(5,5,255);
+  fill: rgb(255,255,0);
 }
 
 .group {
