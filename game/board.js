@@ -7,6 +7,7 @@ function Board(size) {
   this.tileSize = length / size;
   this.largest = 2;
   this.gameOver = false;
+  this.score = 0;
 
   this.grid = new Array(size);
 

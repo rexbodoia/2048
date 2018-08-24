@@ -164,13 +164,17 @@ NumberTile.prototype.moveOne = function(row, col, board, dir) {
 
 function merge(first, second, board) {
   let newNum = parseInt(first.number.innerHTML) * 2;
+  board.score += newNum;
+
   if (newNum > board.largest) {
     setBackground(newNum);
     board.largest = newNum;
   }
+
   if (newNum === 2048) {
     board.gameOver = true;
-  } else {
+  }
+  else {
     let row = second.row;
     let col = second.col;
     board.grid[row][col] = new NumberTile(board, newNum, row, col);

@@ -12,6 +12,13 @@
   text-shadow: 1px 1px #07575B;
 }
 
+#score {
+  font-size: 60px;
+  font-weight: 600;
+  font-family: sans-serif;
+  text-shadow: 1px 1px #07575B;
+}
+
 .background-back-tile {
   fill: #07575B;
 }

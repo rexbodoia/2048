@@ -1,6 +1,18 @@
 const board = new Board(4);
 board.generateNumbers();
 let gameOver = false;
+// let group = document.createElementNS(svgns, 'g');
+// let score = document.createElementNS(svgns, 'text');
+// score.setAttribute('x', window.innerWidth / 2 - 420);
+// score.setAttribute('y', 200);
+// score.setAttribute('id', 'score');
+// score.setAttribute('fill', "#C05B34");
+// let scoreNode = document.createTextNode('0');
+// score.appendChild(scoreNode);
+// let scoreRect = document.createElementNS(svgns, 'rect');
+// scoreRect.setAttribute
+// group.appendChild(score);
+// canvas.appendChild(group);
 
 document.addEventListener('keydown', (event) => {
   if (!board.gameOver) {
@@ -18,6 +30,7 @@ document.addEventListener('keydown', (event) => {
       moveAll(board, 'down');
       break;
     }
+  score.innerHTML = board.score;
   }
   else if (!gameOver && board.noMoves()) {
     let text = document.createElementNS(svgns, 'text');
