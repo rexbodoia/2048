@@ -3,8 +3,9 @@ const length = 480;
 function Board(size) {
   this.size = size;
   this.x = window.innerWidth / 2 - length / 2 - 10;
-  this.y = 150;
+  this.y = 131;
   this.tileSize = length / size;
+  this.largest = 2;
 
   this.grid = new Array(size);
 
@@ -64,6 +65,9 @@ Board.prototype.generateNewTile = function() {
     num = 2;
   } else {
     num = 4;
+    if (this.largest === 2) {
+      this.largest = 4;
+    }
   }
 
   this.grid[row][col] = new NumberTile(this, num, row, col);

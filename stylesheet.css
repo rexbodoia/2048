@@ -14,47 +14,47 @@
 }
 
 .two-tile {
-  fill: rgb(256,256,256);
+  fill: rgb(255,255,255);
 }
 
 .four-tile {
-  fill: rgb(231,231,256);
+  fill: rgb(230,230,255);
 }
 
 .eight-tile {
-  fill: rgb(206,206,256);
+  fill: rgb(205,205,255);
 }
 
 .sixteen-tile {
-  fill: rgb(181,181,256);
+  fill: rgb(180,180,255);
 }
 
 .thirty-two-tile {
-  fill: rgb(156,156,256);
+  fill: rgb(155,155,255);
 }
 
 .sixty-four-tile {
-  fill: rgb(131,131,256);
+  fill: rgb(130,130,255);
 }
 
 .one-twenty-eight {
-  fill: rgb(106,106,256);
+  fill: rgb(105,105,255);
 }
 
 .two-fifty-six {
-  fill: rgb(81,81,256);
+  fill: rgb(80,80,255);
 }
 
 .five-twelve {
-  fill: rgb(56,56,256);
+  fill: rgb(55,55,255);
 }
 
 .ten-twenty-four {
-  fill: rgb(31,31,256);
+  fill: rgb(30,30,255);
 }
 
 .twenty-forty-eight {
-  fill: rgb(6,6,256);
+  fill: rgb(5,5,255);
 }
 
 .group {
@@ -81,5 +81,6 @@
 }
 
 body {
-  background-color: blanchedalmond;
+  /* background-color: blanchedalmond; */
+  background-color: rgb(255,255,255);
 }

@@ -156,10 +156,49 @@ NumberTile.prototype.moveOne = function(row, col, board, dir) {
 
 function merge(first, second, board) {
   let newNum = parseInt(first.number.innerHTML) * 2;
+  if (newNum > board.largest) {
+    setBackground(newNum);
+    board.largest = newNum;
+  }
   let row = second.row;
   let col = second.col;
   board.grid[row][col] = new NumberTile(board, newNum, row, col);
   board.grid[first.row][first.col] = null;
   first.group.remove();
   second.group.remove();
+}
+
+function setBackground(number) {
+  switch (number) {
+    case 4:
+      document.body.style.backgroundColor = "rgb(230,230,255)";
+      break;
+    case 8:
+      document.body.style.backgroundColor = "rgb(205,205,255)";
+      break;
+    case 16:
+    document.body.style.backgroundColor = "rgb(180,180,255)";
+      break;
+    case 32:
+    document.body.style.backgroundColor = "rgb(155,155,255)";
+      break;
+    case 64:
+    document.body.style.backgroundColor = "rgb(130,130,255)";
+      break;
+    case 128:
+    document.body.style.backgroundColor = "rgb(105,105,255)";
+      break;
+    case 256:
+    document.body.style.backgroundColor = "rgb(80,80,255)";
+      break;
+    case 512:
+    document.body.style.backgroundColor = "rgb(55,55,255)";
+      break;
+    case 1024:
+    document.body.style.backgroundColor = "rgb(30,30,255)";
+      break;
+    case 2048:
+    document.body.style.backgroundColor = "rgb(5,5,255)";
+      break;
+  }
 }
