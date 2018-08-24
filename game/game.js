@@ -1,4 +1,4 @@
-let board = new Board(4);
+const board = new Board(4);
 board.generateNumbers();
 
 document.addEventListener('keydown', (event) => {

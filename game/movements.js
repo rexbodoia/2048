@@ -1,5 +1,3 @@
-// const canvas = document.getElementById('myCanvas');
-
 function moveAll(board, direction) {
   for (let row = 0; row < board.size; row++) {
     for (let col = 0; col < board.size; col++) {
@@ -10,10 +8,6 @@ function moveAll(board, direction) {
     }
   }
   board.generateNewTile();
-}
-
-function equalNumbers(first, second) {
-  return first.number.innerHTML == second.number.innerHTML;
 }
 
 Board.prototype.update = function(dir) {
@@ -101,6 +95,10 @@ Board.prototype.update = function(dir) {
   }
 }
 
+function equalNumbers(first, second) {
+  return first.number.innerHTML == second.number.innerHTML;
+}
+
 NumberTile.prototype.moveOne = function(row, col, board, dir) {
   let intr;
   let counter = 0;
@@ -164,22 +162,4 @@ function merge(first, second, board) {
   board.grid[first.row][first.col] = null;
   first.group.remove();
   second.group.remove();
-}
-
-Board.prototype.generateNewTile = function() {
-  let [row, col] = [randomNumber(this.size), randomNumber(this.size)];
-
-  while (this.grid[row][col] != null) {
-    [row, col] = [randomNumber(this.size), randomNumber(this.size)];
-  }
-
-  let num = Math.floor(Math.random() * 4);
-
-  if (num < 3) {
-    num = 2;
-  } else {
-    num = 4;
-  }
-
-  this.grid[row][col] = new NumberTile(this, num, row, col);
 }
