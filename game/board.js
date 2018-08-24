@@ -51,7 +51,7 @@ Board.prototype.generateNumbers = function() {
     let row = Math.floor(Math.random() * 4);
     let num = Math.floor(Math.random() * 4);
 
-    if(this.grid[col][row] != null) continue;
+    if(this.grid[row][col] != null) continue;
 
     if (num < 3) {
       num = 2;
@@ -59,7 +59,7 @@ Board.prototype.generateNumbers = function() {
       num = 4;
     }
 
-    this.grid[col][row] = new NumberTile(this, num, row, col);
+    this.grid[row][col] = new NumberTile(this, num, row, col);
     count += 1;
   }
 }
@@ -100,7 +100,7 @@ function indexToLocation(board, row, col) {
   const y = board.y;
   const tileSize = board.tileSize;
 
-  return [x + tileSize * row, y + tileSize * col];
+  return [x + tileSize * col, y + tileSize * row];
 }
 
 function createFrontTile(x, y, size) {
