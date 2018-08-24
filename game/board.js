@@ -46,23 +46,8 @@ function randomNumber(size) {
 }
 
 Board.prototype.generateNumbers = function() {
-  let count = 0;
-
-  while (count < 2) {
-    let col = randomNumber(this.size);
-    let row = randomNumber(this.size);
-    let num = Math.floor(Math.random() * 4);
-
-    if(this.grid[row][col] != null) continue;
-
-    if (num < 3) {
-      num = 2;
-    } else {
-      num = 4;
-    }
-
-    this.grid[row][col] = new NumberTile(this, num, row, col);
-    count += 1;
+  for (let i = 0; i < 2; i++) {
+    this.generateNewTile();
   }
 }
 
