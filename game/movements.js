@@ -161,4 +161,12 @@ function merge(first, second, board) {
   let row = second.row;
   let col = second.col;
   let tile = new NumberTile(board, newNum, row, col);
+  board.grid[first.row][first.col] = null;
+  first.group.remove();
+  second.group.remove();
+}
+
+function removeTile(tile) {
+  let g = tile.parentNode;
+  let number = tile;
 }
