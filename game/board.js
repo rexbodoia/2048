@@ -159,9 +159,24 @@ function createFrontTile(x, y, size) {
 function createNumber(x, y, value) {
   let text = document.createElementNS(svgns, 'text');
 
-  text.setAttribute('class', 'text');
-  text.setAttribute('x', parseInt(x) + 37);
-  text.setAttribute('y', parseInt(y) + 85);
+  if (value < 10) {
+    x = parseInt(x) + 37;
+    y = parseInt(y) + 89;
+    text.setAttribute('class', 'text');
+  } else if (value < 100) {
+    x = parseInt(x) + 14;
+    y = parseInt(y) + 89;
+    text.setAttribute('class', 'text');
+  } else if (value < 1000) {
+    x = parseInt(x) + 9;
+    y = parseInt(y) + 81;
+    text.setAttribute('class', 'three-digit-text');
+  } else {
+    text.setAttribute('class', 'four-digit-text');
+  }
+
+  text.setAttribute('x', x);
+  text.setAttribute('y', y);
   // text.setAttribute('fill', '#C4DFE6');
   text.setAttribute('fill', 'rgb(60,60,60)');
 

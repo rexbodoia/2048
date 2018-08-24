@@ -70,6 +70,18 @@
   font-family: sans-serif;
 }
 
+.three-digit-text {
+  font-size: 60px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.four-digit-text {
+  font-size: 40px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
 body {
   background-color: blanchedalmond;
 }
