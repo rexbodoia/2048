@@ -2,9 +2,9 @@
 
 ## Background and Overview
 
-This project is a replica of the 2048 sliding puzzle game created by Gabriele Cirulli in 2014, with a couple of extra features. It is a fairly simple game invloving squares that slide on a 4x4 grid by pressing arrow keys. Each square has a value and if two squares with the same vallue collide, they become one square with double that value. The game is over when the board is filled and there are no available moves left. The goal is to get as high of a score as possible, but the game is called 2048 because getting a square with the value 2048 is quite difficult and technically a player wins when this happens, although they can continue to play.
+This project is a replica of the 2048 sliding puzzle game created by Gabriele Cirulli in 2014, with a couple of extra features. It is a fairly simple game invloving squares that slide on a 4x4 grid by pressing arrow keys. Each square has a value and if two squares with the same vallue collide, they become one square with double that value. A new tile is randomly generated on the board everytime a player moves and the game is over when the board is filled and there are no available moves left. The goal of the game is to create a 2048 tile without the board before the game ends.
 
-[2048](https://rexbodoia.github.io/2048/)
+[Real Version](https://gabrielecirulli.github.io/2048/)
 
 ## Functionality and MVP
 
