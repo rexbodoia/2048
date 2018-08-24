@@ -9,6 +9,7 @@ function moveAll(board, direction) {
       }
     }
   }
+  board.generateNewTile();
 }
 
 function equalNumbers(first, second) {
@@ -163,4 +164,22 @@ function merge(first, second, board) {
   board.grid[first.row][first.col] = null;
   first.group.remove();
   second.group.remove();
+}
+
+Board.prototype.generateNewTile = function() {
+  let [row, col] = [randomNumber(this.size), randomNumber(this.size)];
+
+  while (this.grid[row][col] != null) {
+    [row, col] = [randomNumber(this.size), randomNumber(this.size)];
+  }
+
+  let num = Math.floor(Math.random() * 4);
+
+  if (num < 3) {
+    num = 2;
+  } else {
+    num = 4;
+  }
+
+  this.grid[row][col] = new NumberTile(this, num, row, col);
 }

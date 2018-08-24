@@ -14,11 +14,49 @@
 }
 
 .two-tile {
-  fill: #C99E10;
+  /* fill: #C99E10; */
+  fill: rgb(256,256,256);
 }
 
 .four-tile {
-  fill: #9B4F0F;
+  /* fill: #9B4F0F; */
+  fill: rgb(231,231,256);
+}
+
+.eight-tile {
+  fill: rgb(206,206,256);
+}
+
+.sixteen-tile {
+  fill: rgb(181,181,256);
+}
+
+.thirty-two-tile {
+  fill: rgb(156,156,256);
+}
+
+.sixty-four-tile {
+  fill: rgb(131,131,256);
+}
+
+.one-twenty-eight {
+  fill: rgb(106,106,256);
+}
+
+.two-fifty-six {
+  fill: rgb(81,81,256);
+}
+
+.five-twelve {
+  fill: rgb(56,56,256);
+}
+
+.ten-twenty-four {
+  fill: rgb(31,31,256);
+}
+
+.twenty-forty-eight {
+  fill: rgb(6,6,256);
 }
 
 .group {

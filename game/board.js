@@ -43,12 +43,16 @@ function backgroundTile(x, y, size) {
   return group;
 }
 
+function randomNumber(size) {
+  return Math.floor(Math.random() * size);
+}
+
 Board.prototype.generateNumbers = function() {
   let count = 0;
 
   while (count < 2) {
-    let col = Math.floor(Math.random() * 4);
-    let row = Math.floor(Math.random() * 4);
+    let col = randomNumber(this.size);
+    let row = randomNumber(this.size);
     let num = Math.floor(Math.random() * 4);
 
     if(this.grid[row][col] != null) continue;
@@ -84,6 +88,42 @@ function NumberTile(board, number, row, col) {
     case 4:
       this.tile.setAttribute('class', 'four-tile');
       this.number = createNumber(x, y, 4);
+      break;
+    case 8:
+      this.tile.setAttribute('class', 'eight-tile');
+      this.number = createNumber(x, y, 8);
+      break;
+    case 16:
+      this.tile.setAttribute('class', 'sixteen-tile');
+      this.number = createNumber(x, y, 16);
+      break;
+    case 32:
+      this.tile.setAttribute('class', 'thirty-two-tile');
+      this.number = createNumber(x, y, 32);
+      break;
+    case 64:
+      this.tile.setAttribute('class', 'sixty-four-tile');
+      this.number = createNumber(x, y, 64);
+      break;
+    case 128:
+      this.tile.setAttribute('class', 'one-twenty-eight');
+      this.number = createNumber(x, y, 128);
+      break;
+    case 256:
+      this.tile.setAttribute('class', 'two-fifty-six');
+      this.number = createNumber(x, y, 256);
+      break;
+    case 512:
+      this.tile.setAttribute('class', 'five-twelve');
+      this.number = createNumber(x, y, 512);
+      break;
+    case 1024:
+      this.tile.setAttribute('class', 'ten-twenty-four');
+      this.number = createNumber(x, y, 1024);
+      break;
+    case 2048:
+      this.tile.setAttribute('class', 'twenty-forty-eight');
+      this.number = createNumber(x, y, 2048);
       break;
   }
 
@@ -122,7 +162,8 @@ function createNumber(x, y, value) {
   text.setAttribute('class', 'text');
   text.setAttribute('x', parseInt(x) + 37);
   text.setAttribute('y', parseInt(y) + 85);
-  text.setAttribute('fill', '#C4DFE6');
+  // text.setAttribute('fill', '#C4DFE6');
+  text.setAttribute('fill', 'rgb(60,60,60)');
 
   let textNode = document.createTextNode(value);
 
@@ -130,11 +171,3 @@ function createNumber(x, y, value) {
 
   return text;
 }
-
-// NumberTile.prototype.x = function(x) {
-//   this.x = x;
-// }
-//
-// NumberTile.prototype.y = function(y) {
-//   this.y = y;
-// }
