@@ -1,8 +1,9 @@
 const board = new Board(4);
 board.generateNumbers();
+let gameOver = false;
 
 document.addEventListener('keydown', (event) => {
-  // if (!board.gameOver) {
+  if (!board.gameOver) {
     switch (event.keyCode) {
       case 37:
       moveAll(board, 'left');
@@ -17,12 +18,14 @@ document.addEventListener('keydown', (event) => {
       moveAll(board, 'down');
       break;
     }
-  // }
-  // else {
-  //   let text = document.createElementNS(svgns, 'text');
-  //   let textNode = document.createTextNode('Game Over');
-  //
-  //   text.appendChild(textNode);
-  //   canvas.appendChild(text);
-  // }
+  }
+  else if (!gameOver) {
+    let text = document.createElementNS(svgns, 'text');
+    let textNode = document.createTextNode('Game Over');
+
+    text.appendChild(textNode);
+    canvas.appendChild(text);
+
+    gameOver = true;
+  }
 });

@@ -74,25 +74,25 @@ Board.prototype.generateNewTile = function() {
   this.grid[row][col] = new NumberTile(this, num, row, col);
 }
 
-// Board.prototype.noMoves = function() {
-//   let moves = false;
-//
-//   for (let row = 0; row < this.size; row++) {
-//     for (let col = 0; col < this.size; col++) {
-//       if (this.grid[row][col] == null) return true;
-//       if (col - 1 >= 0 && (this.grid[row][col - 1] == null || equalNumbers(this.grid[row][col], this.grid[row][col - 1]))) {
-//         moves = true;
-//       } else if (col + 1 < board.size && (this.grid[row][col + 1] == null || equalNumbers(this.grid[row][col], this.grid[row][col + 1]))) {
-//         moves = true;
-//       } else if (row - 1 >= 0 && (this.grid[row - 1][col] == null || equalNumbers(this.grid[row][col], this.grid[row - 1][col]))) {
-//         moves = true;
-//       } else if (row + 1 < board.size && (this.grid[row + 1][col] == null || equalNumbers(this.grid[row][col], this.grid[row + 1][col])))
-//         moves = true;
-//     }
-//   }
-//
-//   return moves;
-// }
+Board.prototype.noMoves = function() {
+  let noMoves = true;
+  for (let row = 0; row < this.size; row++) {
+    for (let col = 0; col < this.size; col++) {
+      if (this.grid[row][col] == null) return false;
+
+      if (col - 1 >= 0 && (this.grid[row][col - 1] == null || equalNumbers(this.grid[row][col], this.grid[row][col - 1]))) {
+        moves = false;
+      } else if (col + 1 < board.size && (this.grid[row][col + 1] == null || equalNumbers(this.grid[row][col], this.grid[row][col + 1]))) {
+        moves = false;
+      } else if (row - 1 >= 0 && (this.grid[row - 1][col] == null || equalNumbers(this.grid[row][col], this.grid[row - 1][col]))) {
+        moves = false;
+      } else if (row + 1 < board.size && (this.grid[row + 1][col] == null || equalNumbers(this.grid[row][col], this.grid[row + 1][col])))
+        moves = false;
+    }
+  }
+
+  return noMoves;
+}
 
 function equalNumbers(first, second) {
   return first.number.innerHTML == second.number.innerHTML;
