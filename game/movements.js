@@ -8,6 +8,9 @@ function moveAll(board, direction) {
     }
   }
   board.generateNewTile();
+  if (document.getElementById('instructions')) {
+    document.getElementById('instructions').remove();
+  }
 }
 
 Board.prototype.update = function(dir) {
@@ -93,10 +96,9 @@ Board.prototype.update = function(dir) {
     }
     break;
   }
-}
-
-function equalNumbers(first, second) {
-  return first.number.innerHTML == second.number.innerHTML;
+  // if (board.noMoves()) {
+  //   board.gameOver = true;
+  // }
 }
 
 NumberTile.prototype.moveOne = function(row, col, board, dir) {
