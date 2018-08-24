@@ -19,11 +19,13 @@ Users are able to:
 
 I needed very few technologies to implement this project:
 
-+ Vanilla javascript will be used to write the logic and structure of the game
-+ HTML5 SVG and CSS will be used for all of the graphics I need
++ Vanilla javascript was used to write the logic and structure of the game
++ HTML5 SVG and CSS was used for all of the graphics I need
 
-The scripts I need for this project are:
+The scripts I needed for this project are:
 
 + board.js: keeps track of the grid and what tiles are where
 + tile.js: holds a value and the canvas graphic of a correspondingly colored square
 + game.js: the highest level script, which will run the game using keyboard event handlers
+
+I simply rendered an index.html file with ordered scripts for the javascript files I need to run the game as well as a script for a css stylesheet
