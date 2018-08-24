@@ -62,7 +62,6 @@ Board.prototype.update = function(dir) {
       for (let row = 1; row < board.size; row++) {
         let tile = this.grid[row][col];
         if (tile != null) {
-          // debugger
           while(row > 0 && this.grid[row - 1][col] == null) {
             tile.moveOne(row, col, board, dir);
             this.grid[row - 1][col] = tile;
@@ -160,13 +159,8 @@ function merge(first, second, board) {
   let newNum = parseInt(first.number.innerHTML) * 2;
   let row = second.row;
   let col = second.col;
-  let tile = new NumberTile(board, newNum, row, col);
+  board.grid[row][col] = new NumberTile(board, newNum, row, col);
   board.grid[first.row][first.col] = null;
   first.group.remove();
   second.group.remove();
-}
-
-function removeTile(tile) {
-  let g = tile.parentNode;
-  let number = tile;
 }
