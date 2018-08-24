@@ -103,7 +103,6 @@ Board.prototype.update = function(dir) {
     break;
   }
   if (board.noMoves()) {
-    console.log('game over')
     board.gameOver = true;
   }
 }
@@ -169,12 +168,16 @@ function merge(first, second, board) {
     setBackground(newNum);
     board.largest = newNum;
   }
-  let row = second.row;
-  let col = second.col;
-  board.grid[row][col] = new NumberTile(board, newNum, row, col);
-  board.grid[first.row][first.col] = null;
-  first.group.remove();
-  second.group.remove();
+  if (newNum === 2048) {
+    board.gameOver = true;
+  } else {
+    let row = second.row;
+    let col = second.col;
+    board.grid[row][col] = new NumberTile(board, newNum, row, col);
+    board.grid[first.row][first.col] = null;
+    first.group.remove();
+    second.group.remove();
+  }
 }
 
 function setBackground(number) {
