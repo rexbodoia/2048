@@ -5,6 +5,13 @@
   text-shadow: 3px 3px #07575B;
 }
 
+#instructions {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: sans-serif;
+  text-shadow: 1px 1px #07575B;
+}
+
 .background-back-tile {
   fill: #07575B;
 }
@@ -81,6 +88,5 @@
 }
 
 body {
-  /* background-color: blanchedalmond; */
   background-color: rgb(255,255,255);
 }
