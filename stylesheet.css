@@ -87,6 +87,14 @@
   font-family: sans-serif;
 }
 
+.game-over {
+  font-size: 100px;
+  font-weight: 600;
+  font-family: sans-serif;
+  fill: #C05B34;
+  text-shadow: 1px 1px #07575B;
+}
+
 body {
   background-color: rgb(255,255,255);
 }

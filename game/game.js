@@ -21,6 +21,10 @@ document.addEventListener('keydown', (event) => {
   }
   else if (!gameOver) {
     let text = document.createElementNS(svgns, 'text');
+    text.setAttribute('x', window.innerWidth / 2 - 250);
+    text.setAttribute('y', 400);
+    text.setAttribute('class', 'game-over');
+
     let textNode = document.createTextNode('Game Over');
 
     text.appendChild(textNode);
