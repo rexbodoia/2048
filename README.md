@@ -31,3 +31,5 @@ The scripts I needed for this project are:
 + game.js: the highest level script, which will run the game using keyboard event handlers
 
 I simply rendered an index.html file with ordered scripts for the javascript files I need to run the game as well as a script for a css stylesheet
+
+![Live Demo](/docs/2048Video)
