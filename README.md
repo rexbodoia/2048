@@ -32,4 +32,4 @@ The scripts I needed for this project are:
 
 I simply rendered an index.html file with ordered scripts for the javascript files I need to run the game as well as a script for a css stylesheet
 
-![Live Demo](/docs/2048Video)
+![Live Demo](/docs/2048Video.mov)
