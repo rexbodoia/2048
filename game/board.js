@@ -1,4 +1,13 @@
 const length = 480;
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+function createCanvas() {
+  const canvas = document.createElementNS(svgns, 'svg');
+  canvas.setAttribute('width', width);
+  canvas.setAttribute('height', height);
+  document.getElementsByTagName('body')[0].appendChild(canvas);
+}
 
 function Board(size) {
   this.size = size;
