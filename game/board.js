@@ -1,11 +1,33 @@
 const length = 480;
-const width = window.innerWidth;
-const height = window.innerHeight;
+
+(function() {
+    let throttle = function(type, name, obj) {
+        obj = obj || window;
+        let running = false;
+        let func = function() {
+            if (running) { return; }
+            running = true;
+             requestAnimationFrame(function() {
+                obj.dispatchEvent(new CustomEvent(name));
+                running = false;
+            });
+        };
+        obj.addEventListener(type, func);
+    };
+
+    throttle("resize", "optimizedResize");
+})();
+
+window.addEventListener("optimizedResize", function() {
+    canvas.setAttribute('width', window.innerWidth);
+    canvas.setAttribute('height', window.innerHeight);
+    console.log(canvas);
+});
 
 function createCanvas() {
   const canvas = document.createElementNS(svgns, 'svg');
-  canvas.setAttribute('width', width);
-  canvas.setAttribute('height', height);
+  canvas.setAttribute('width', window.innerWidth);
+  canvas.setAttribute('height', window.innerHeight);
   document.getElementsByTagName('body')[0].appendChild(canvas);
 }
 
