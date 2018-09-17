@@ -2,6 +2,9 @@ const svgns = "http://www.w3.org/2000/svg";
 
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
+let gridWidth = 492;
+let gridX = windowWidth / 2 - gridWidth / 2;
+let scoreX = gridX + gridWidth + 30;
 
 const canvas = document.createElementNS(svgns, 'svg');
 canvas.setAttribute('width', windowWidth);
@@ -21,7 +24,7 @@ title.setAttribute('y', 100);
 title.setAttribute('fill', "rgb(60,60,60)");
 
 const scoreRect = document.createElementNS(svgns, 'rect');
-scoreRect.setAttribute('x', 1000);
+scoreRect.setAttribute('x', scoreX);
 scoreRect.setAttribute('y', 100);
 scoreRect.setAttribute('rx', 10);
 scoreRect.setAttribute('ry', 10);
@@ -31,7 +34,7 @@ scoreRect.setAttribute('fill', "rgb(60,60,60)");
 
 const scoreText = document.createElementNS(svgns, 'text');
 scoreText.setAttribute('id', 'score');
-scoreText.setAttribute('x', 1020);
+scoreText.setAttribute('x', scoreX + 20);
 scoreText.setAttribute('y', 168);
 scoreText.setAttribute('fill', "#C05B34");
 
@@ -45,7 +48,7 @@ canvas.appendChild(scoreGroup);
 
 const grid = document.createElementNS(svgns, 'rect');
 grid.setAttribute('id', 'grid');
-grid.setAttribute('x', windowWidth / 2 - 246);
+grid.setAttribute('x', gridX);
 grid.setAttribute('y', '125');
 grid.setAttribute('rx', '20');
 grid.setAttribute('ry', '20');
@@ -78,10 +81,21 @@ window.addEventListener("optimizedResize", function() {
     canvas.setAttribute('width', window.innerWidth);
     canvas.setAttribute('height', window.innerHeight);
 
-    centerTitle(window.innerWidth);
+    // centerAll(Array.from(canvas.children));
 });
 
-function centerTitle(windowWidth) {
-  titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
-  title.setAttribute('x', titleX);
+function centerAll(children) {
+  children.forEach(child => {
+    let x;
+
+    if (child.textLength) {
+      x = window.innerWidth / 2 - child.textLength.baseVal.value / 2;
+    } else if (child.width) {
+      x = window.innerWidth / 2 - child.width.baseVal.value / 2;
+    } else {
+      centerAll(Array.from(child.children));
+    }
+
+    child.setAttribute('x', x);
+  });
 }
