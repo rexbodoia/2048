@@ -1,35 +1,5 @@
 const length = 480;
 
-(function() {
-    let throttle = function(type, name, obj) {
-        obj = obj || window;
-        let running = false;
-        let func = function() {
-            if (running) { return; }
-            running = true;
-             requestAnimationFrame(function() {
-                obj.dispatchEvent(new CustomEvent(name));
-                running = false;
-            });
-        };
-        obj.addEventListener(type, func);
-    };
-
-    throttle("resize", "optimizedResize");
-})();
-
-window.addEventListener("optimizedResize", function() {
-    canvas.setAttribute('width', window.innerWidth);
-    canvas.setAttribute('height', window.innerHeight);
-
-    centerTitle(window.innerWidth);
-});
-
-function centerTitle(windowWidth) {
-  titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
-  title.setAttribute('x', titleX);
-}
-
 function Board(size) {
   this.size = size;
   this.x = window.innerWidth / 2 - length / 2;
