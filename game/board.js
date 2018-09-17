@@ -1,5 +1,18 @@
 const length = 480;
 
+function createCanvas() {
+  const canvas = document.createElementNS(svgns, 'svg');
+  canvas.setAttribute('width', window.innerWidth);
+  canvas.setAttribute('height', window.innerHeight);
+  canvas.setAttribute('id', 'myCanvas');
+  document.getElementsByTagName('body')[0].appendChild(canvas);
+
+  const title = document.createElementNS(svgns, 'text');
+  const titleText = document.createTextNode("2048!");
+  title.appendChild(titleText);
+  canvas.appendChild(title);
+}
+
 (function() {
     let throttle = function(type, name, obj) {
         obj = obj || window;
@@ -21,15 +34,7 @@ const length = 480;
 window.addEventListener("optimizedResize", function() {
     canvas.setAttribute('width', window.innerWidth);
     canvas.setAttribute('height', window.innerHeight);
-    console.log(canvas);
 });
-
-function createCanvas() {
-  const canvas = document.createElementNS(svgns, 'svg');
-  canvas.setAttribute('width', window.innerWidth);
-  canvas.setAttribute('height', window.innerHeight);
-  document.getElementsByTagName('body')[0].appendChild(canvas);
-}
 
 function Board(size) {
   this.size = size;
