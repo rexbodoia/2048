@@ -1,27 +1,5 @@
 const length = 480;
 
-function createCanvas() {
-  let windowWidth = window.innerWidth;
-  let windowHeight = window.innerHeight;
-
-  const canvas = document.createElementNS(svgns, 'svg');
-  canvas.setAttribute('width', windowWidth);
-  canvas.setAttribute('height', windowHeight);
-  canvas.setAttribute('id', 'myCanvas');
-  document.getElementsByTagName('body')[0].appendChild(canvas);
-
-  const title = document.createElementNS(svgns, 'text');
-  title.setAttribute('id', 'title');
-  const titleText = document.createTextNode("2048!");
-  title.appendChild(titleText);
-  canvas.appendChild(title);
-
-  titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
-  title.setAttribute('x', titleX);
-  title.setAttribute('y', 100);
-  title.setAttribute('fill', "rgb(60,60,60)");
-}
-
 (function() {
     let throttle = function(type, name, obj) {
         obj = obj || window;
@@ -54,7 +32,7 @@ function centerTitle(windowWidth) {
 
 function Board(size) {
   this.size = size;
-  this.x = window.innerWidth / 2 - length / 2 - 10;
+  this.x = window.innerWidth / 2 - length / 2;
   this.y = 131;
   this.tileSize = length / size;
   this.largest = 2;

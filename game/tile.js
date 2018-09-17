@@ -1,5 +1,37 @@
 const svgns = "http://www.w3.org/2000/svg";
-const canvas = document.getElementById('myCanvas');
+
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+
+const canvas = document.createElementNS(svgns, 'svg');
+canvas.setAttribute('width', windowWidth);
+canvas.setAttribute('height', windowHeight);
+canvas.setAttribute('id', 'myCanvas');
+document.getElementsByTagName('body')[0].appendChild(canvas);
+
+const title = document.createElementNS(svgns, 'text');
+title.setAttribute('id', 'title');
+const titleText = document.createTextNode("2048!");
+title.appendChild(titleText);
+canvas.appendChild(title);
+
+titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
+title.setAttribute('x', titleX);
+title.setAttribute('y', 100);
+title.setAttribute('fill', "rgb(60,60,60)");
+
+const grid = document.createElementNS(svgns, 'rect');
+grid.setAttribute('id', 'grid');
+grid.setAttribute('x', windowWidth / 2 - 246);
+grid.setAttribute('y', '125');
+grid.setAttribute('rx', '20');
+grid.setAttribute('ry', '20');
+grid.setAttribute('ry', '20');
+grid.setAttribute('width', '492');
+grid.setAttribute('height', '492');
+grid.setAttribute('fill', '#07575B');
+
+canvas.appendChild(grid);
 
 function NumberTile(board, number, row, col) {
   this.row = row;

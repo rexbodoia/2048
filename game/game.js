@@ -1,4 +1,3 @@
-createCanvas();
 const board = new Board(4);
 board.generateNumbers();
 let gameOver = false;
