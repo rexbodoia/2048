@@ -19,6 +19,7 @@ function createCanvas() {
   titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
   title.setAttribute('x', titleX);
   title.setAttribute('y', 100);
+  title.setAttribute('fill', "rgb(60,60,60)");
 }
 
 (function() {
@@ -42,7 +43,14 @@ function createCanvas() {
 window.addEventListener("optimizedResize", function() {
     canvas.setAttribute('width', window.innerWidth);
     canvas.setAttribute('height', window.innerHeight);
+
+    centerTitle(window.innerWidth);
 });
+
+function centerTitle(windowWidth) {
+  titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
+  title.setAttribute('x', titleX);
+}
 
 function Board(size) {
   this.size = size;
