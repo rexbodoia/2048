@@ -1,16 +1,24 @@
 const length = 480;
 
 function createCanvas() {
+  let windowWidth = window.innerWidth;
+  let windowHeight = window.innerHeight;
+
   const canvas = document.createElementNS(svgns, 'svg');
-  canvas.setAttribute('width', window.innerWidth);
-  canvas.setAttribute('height', window.innerHeight);
+  canvas.setAttribute('width', windowWidth);
+  canvas.setAttribute('height', windowHeight);
   canvas.setAttribute('id', 'myCanvas');
   document.getElementsByTagName('body')[0].appendChild(canvas);
 
   const title = document.createElementNS(svgns, 'text');
+  title.setAttribute('id', 'title');
   const titleText = document.createTextNode("2048!");
   title.appendChild(titleText);
   canvas.appendChild(title);
+
+  titleX = windowWidth / 2 - title.textLength.baseVal.value / 2;
+  title.setAttribute('x', titleX);
+  title.setAttribute('y', 100);
 }
 
 (function() {
