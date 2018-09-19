@@ -3,7 +3,7 @@ const length = 480;
 function Board(size) {
   this.size = size;
   this.x = window.innerWidth / 2 - length / 2;
-  this.y = 131;
+  this.y = 146;
   this.tileSize = length / size;
   this.largest = 2;
   this.gameOver = false;

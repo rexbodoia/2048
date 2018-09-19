@@ -49,7 +49,7 @@ canvas.appendChild(scoreGroup);
 const grid = document.createElementNS(svgns, 'rect');
 grid.setAttribute('id', 'grid');
 grid.setAttribute('x', gridX);
-grid.setAttribute('y', '125');
+grid.setAttribute('y', '140');
 grid.setAttribute('rx', '20');
 grid.setAttribute('ry', '20');
 grid.setAttribute('ry', '20');
@@ -82,7 +82,19 @@ window.addEventListener("optimizedResize", function() {
     canvas.setAttribute('height', window.innerHeight);
 
     // centerAll(Array.from(canvas.children));
+    centerGrid();
+    centerTitle();
 });
+
+function centerGrid() {
+  let x = window.innerWidth / 2 - grid.width.baseVal.value / 2;
+  grid.setAttribute('x', x);
+}
+
+function centerTitle() {
+  let x = window.innerWidth / 2 - title.textLength.baseVal.value / 2;
+  title.setAttribute('x', x);
+}
 
 function centerAll(children) {
   children.forEach(child => {
